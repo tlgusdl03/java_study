@@ -12,15 +12,17 @@ public class Switch {
     public static void main(String[] args) {
         int userInput = scanner.nextInt();
 
+        userInput /= 10;
         switch(userInput){
-            case 90:
-                System.out.println("90점");
+            case 9:
+                System.out.println("A");
                 break;
-            case 80:
-                System.out.println("80점");
+            case 8:
+                System.out.println("B");
                 break;
             default:
                 System.out.println("불합격");
+                break;
         }
 
         closeScanner();
