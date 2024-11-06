@@ -4,8 +4,10 @@ package final_assignment_prefare.service;
 import final_assignment_prefare.manager.InventoryManager;
 import final_assignment_prefare.manager.MenuManager;
 import final_assignment_prefare.model.MenuItem;
+import final_assignment_prefare.model.Order;
 
-import java.util.List;
+import java.util.*;
+
 
 public class CoffeeShopService {
     private MenuManager menuManager;
@@ -20,9 +22,34 @@ public class CoffeeShopService {
         this.budget=500;
     }
 
-    public void buyNewMenu(MenuItem selectedMenu){
-        if(this.budget > menuManager.unlockNewMenu(selectedMenu)){
+    public Map<MenuItem, List<String>> makingCoffee (Order order){
+        List<MenuItem> menuItemList = order.getOrderedItems();
 
-        };
+        Scanner scanner = new Scanner(System.in);
+
+        Map<MenuItem, List<String>> result = new HashMap<>();
+
+        for(MenuItem menuItem : menuItemList){
+
+            Map<String, Integer> ingredients =  menuItem.getIngredients();
+            List<String> recipe = new ArrayList<>();
+            while(scanner.hasNextLine()){
+                recipe.add(scanner.nextLine());
+            }
+            result.put(menuItem, recipe);
+        }
+
+        return result;
+    }
+
+
+    public boolean buyNewMenu(MenuItem selectedMenu){
+        double result = menuManager.unlockNewMenu(selectedMenu, budget);
+
+        if(result != budget){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -78,6 +78,10 @@ public class MenuItem {
         this.isUnlock = true;
     }
 
+    public Map<String, Integer> getIngredients() {
+        return ingredients;
+    }
+
     public boolean isUnlock() {
         return isUnlock;
     }

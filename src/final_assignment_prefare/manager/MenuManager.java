@@ -44,13 +44,20 @@ public class MenuManager {
         return filteredMenuItems;
     }
 
-    public double unlockNewMenu(MenuItem selectedMenu){
+    public double unlockNewMenu(MenuItem selectedMenu, double budget){
         for(MenuItem menuItem : menuItemList){
-            if(menuItem.equals(selectedMenu) && !menuItem.isUnlock()){
+            if(menuItem.equals(selectedMenu)){
+                if(menuItem.isUnlock()){
+                    return budget;
+                }
+                if(menuItem.getUnlockPrice() > budget){
+                    return budget;
+                }
+
                 menuItem.setUnlock();
-                return menuItem.getUnlockPrice();
+                return budget-menuItem.getUnlockPrice();
             }
         }
-        return 0;
+        return budget;
     }
 }
