@@ -1,6 +1,6 @@
-package final_assignment_prefare.manager;
+package predicated_final_assignment_prefare.manager;
 
-import final_assignment_prefare.model.MenuItem;
+import predicated_final_assignment_prefare.model.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;

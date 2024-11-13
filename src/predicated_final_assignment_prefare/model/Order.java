@@ -1,4 +1,4 @@
-package final_assignment_prefare.model;
+package predicated_final_assignment_prefare.model;
 
 import java.util.List;
 

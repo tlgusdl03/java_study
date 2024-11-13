@@ -1,10 +1,10 @@
-package final_assignment_prefare.service;
+package predicated_final_assignment_prefare.service;
 
 
-import final_assignment_prefare.manager.InventoryManager;
-import final_assignment_prefare.manager.MenuManager;
-import final_assignment_prefare.model.MenuItem;
-import final_assignment_prefare.model.Order;
+import predicated_final_assignment_prefare.manager.InventoryManager;
+import predicated_final_assignment_prefare.manager.MenuManager;
+import predicated_final_assignment_prefare.model.MenuItem;
+import predicated_final_assignment_prefare.model.Order;
 
 import java.util.*;
 

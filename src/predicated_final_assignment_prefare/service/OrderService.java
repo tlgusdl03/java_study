@@ -1,8 +1,8 @@
-package final_assignment_prefare.service;
+package predicated_final_assignment_prefare.service;
 
-import final_assignment_prefare.model.Customer;
-import final_assignment_prefare.model.MenuItem;
-import final_assignment_prefare.model.Order;
+import predicated_final_assignment_prefare.model.Customer;
+import predicated_final_assignment_prefare.model.MenuItem;
+import predicated_final_assignment_prefare.model.Order;
 
 import java.util.List;
 

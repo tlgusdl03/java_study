@@ -1,4 +1,4 @@
-package final_assignment_prefare.manager;
+package predicated_final_assignment_prefare.manager;
 
 import java.util.HashMap;
 import java.util.List;
