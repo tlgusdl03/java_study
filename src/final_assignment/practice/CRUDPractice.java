@@ -1,5 +1,8 @@
 package final_assignment.practice;
 
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -7,6 +10,63 @@ import java.util.Scanner;
 
 // Test implementation of CRUD of program Using File I/O Instead of Using DB
 // After CLI test proceeded, Also will test on GUI
+class EntireScreen extends JFrame{
+    private Container c = getContentPane();
+    public EntireScreen(){
+        setTitle("GUI CRUD TEST");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        c.setLayout(new BorderLayout());
+        pack();
+
+        c.add(new InputHeader(), BorderLayout.NORTH);
+        c.add(new Body(), BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+}
+
+class InputHeader extends JPanel{
+    public InputHeader(){
+        setSize(500, 100);
+        setLayout(null);
+
+        JLabel choiceLabel = new JLabel("Enter the choice");
+        JTextField choiceInput = new JTextField("Ex: 1 or 2 or....", 1);
+
+        JLabel nameLabel = new JLabel("Enter the Name");
+        JTextField nameInput = new JTextField("Ex: Steve, John...", 1);
+
+        JLabel ageLabel = new JLabel("Enter the Age");
+        JTextField ageInput = new JTextField("Ex: 37, 23...", 1);
+
+        choiceLabel.setBounds(10,0,100, 30);
+        choiceInput.setBounds(10, 50, 100, 30);
+        nameLabel.setBounds(110, 0, 100, 30);
+        nameInput.setBounds(110, 50, 100, 30);
+        ageLabel.setBounds(210, 0, 100, 30);
+        ageInput.setBounds(210, 50, 100, 30);
+
+        add(choiceInput);
+        add(choiceInput);
+        add(nameLabel);
+        add(nameInput);
+        add(ageLabel);
+        add(ageInput);
+
+        setVisible(true);
+    }
+}
+
+class Body extends JPanel{
+    public Body(){
+        setLayout(null);
+        setSize(500, 500);
+
+        JScrollPane jScrollPane = new JScrollPane();
+    }
+}
+
 class Person{
     public String name;
     public int age;
@@ -126,6 +186,9 @@ public class CRUDPractice {
     }
 
     public static void main(String[] args) {
+
+        new EntireScreen();
+
         CRUDPractice crud = new CRUDPractice();
         Scanner scanner = new Scanner(System.in);
 
