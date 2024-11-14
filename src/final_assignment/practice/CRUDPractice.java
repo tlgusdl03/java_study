@@ -1,6 +1,5 @@
 package final_assignment.practice;
 
-import javax.script.ScriptEngine;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,7 +22,7 @@ class Person{
 
     public static Person fromString(String line){
         String[] parts = line.split(",");
-        String name = parts[0];
+        String name = parts[0].trim();
         int age = Integer.parseInt(parts[1].trim());
         return new Person(name, age);
     }
@@ -135,8 +134,10 @@ public class CRUDPractice {
         while(true){
             System.out.println("\n1. See all people");
             System.out.println("2. Add new person");
-            System.out.println("3. Exit");
-            System.out.println("Enter : ");
+            System.out.println("3. Update person");
+            System.out.println("4. Delete person");
+            System.out.println("5. Exit");
+            System.out.print("Enter: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -150,7 +151,19 @@ public class CRUDPractice {
                 int age = scanner.nextInt();
                 crud.createPerson(name, age);
                 System.out.println("New person added.");
-            } else if (choice == 3) {
+            } else if (choice == 3){
+                System.out.print("Enter the person name that you want to update: ");
+                String name = scanner.nextLine();
+                System.out.print("Enter the new age: ");
+                int age = scanner.nextInt();
+                crud.updatePerson(name, age);
+            }
+            else if(choice == 4){
+                System.out.print("Enter the person name that you want to delete: ");
+                String name = scanner.nextLine();
+                crud.deletePerson(name);
+            }
+            else if (choice == 5) {
                 System.out.println("Terminated...");
                 break;
             } else {
