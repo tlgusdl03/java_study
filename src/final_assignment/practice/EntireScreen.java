@@ -1,24 +1,30 @@
-//package final_assignment.practice;
-//
-//import javax.swing.*;
-//import java.awt.*;
-//
-//public class EntireScreen extends JFrame {
-//    private Container c = getContentPane();
-//    public EntireScreen(CRUDPractice crudPractice){
-//        setTitle("GUI CRUD TEST");
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//        c.setLayout(new BorderLayout());
-//
-//        InputHeader inputHeader = new InputHeader(crudPractice);
-//        crudPractice.body = new Body(crudPractice);
-//
-//        c.add(inputHeader, BorderLayout.NORTH);
-//        c.add(crudPractice.body, BorderLayout.CENTER);
-//
-//        setSize(1000, 1000);
-//        setVisible(true);
-//    }
-//}
-//
+package final_assignment.practice;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class EntireScreen extends JFrame{
+    private CrudProgram crudProgram;
+    public EntireScreen(CrudProgram crudProgram){
+        this.crudProgram = crudProgram;
+
+        setTitle("Person Manager Program");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setSize(1000, 1000);
+
+        InputHeader inputHeader = new InputHeader(crudProgram);
+        add(inputHeader, BorderLayout.NORTH);
+
+        Body body = new Body(crudProgram);
+        add(body, BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    public void updateScreen(){
+
+    }
+
+}
+
