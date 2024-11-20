@@ -9,18 +9,15 @@ import java.util.List;
 
 public class Body extends JPanel {
     private CrudProgram crudProgram;
-    private JList<MyPanel> myPanelJList;
-    private DefaultListModel<MyPanel> listModel;
-    private static final String defaultProfileImage = "src/final_assignment/practice/images/default_profile_image";
+    private DefaultListModel<MyPanel> listModel = new DefaultListModel<>();
+    private JList<MyPanel> myPanelJList = new JList<>(listModel);
+
+    private static final String defaultProfileImage = "src/final_assignment/practice/images/default_profile_image.jpg";
 
     public Body(CrudProgram crudProgram) {
         this.crudProgram = crudProgram;
 
-        listModel = new DefaultListModel<>();
-        myPanelJList = new JList<>(listModel);
-
         myPanelJList.setCellRenderer(new MyPanelRenderer());
-
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(900, 1000));
 
@@ -63,11 +60,14 @@ public class Body extends JPanel {
         private JLabel imageLabel = new JLabel();
 
         public MyPanelRenderer(){
-            setPreferredSize(new Dimension(1000, 50));
-            setLayout(new BorderLayout(10, 10));
+            setLayout(new BorderLayout());
             JPanel textPanel = new JPanel(new GridLayout(1, 2));
             textPanel.add(nameLabel);
             textPanel.add(ageLabel);
+
+            textPanel.setPreferredSize(new Dimension(850, 50));
+            imageLabel.setPreferredSize(new Dimension(50, 50));
+
             add(imageLabel, BorderLayout.WEST);
             add(textPanel, BorderLayout.CENTER);
         }
@@ -81,7 +81,9 @@ public class Body extends JPanel {
                 if (value.profileImagePath.startsWith("http")) {
                     URL url = new URL(value.profileImagePath);
                     image = ImageIO.read(url);
-                } else {
+                } else if (value.profileImagePath.isEmpty()){
+                    image = ImageIO.read(new File(defaultProfileImage));
+                }else{
                     image = ImageIO.read(new File(value.profileImagePath));
                 }
                 imageLabel.setIcon(new ImageIcon(image.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
@@ -97,6 +99,7 @@ public class Body extends JPanel {
                 setForeground(list.getForeground());
             }
 
+            setOpaque(true);
             return this;
         }
     }
