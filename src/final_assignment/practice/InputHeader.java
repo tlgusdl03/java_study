@@ -2,6 +2,7 @@ package final_assignment.practice;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InputHeader extends JPanel {
@@ -11,6 +12,7 @@ public class InputHeader extends JPanel {
     private JTextField[] jTextFields = new JTextField[3];
     private JButton submitBtn = new JButton("Enter");
     private CrudProgram crudProgram;
+    private int selection=0;
 
     public InputHeader(CrudProgram crudProgram) {
         this.crudProgram = crudProgram;
@@ -27,7 +29,19 @@ public class InputHeader extends JPanel {
             btn[i] = new JRadioButton(choices[i]);
             btn[i].setSize(100, 20);
             btn[i].setLocation(30 + 100 * i, 30);
-            btn[i].setActionCommand(choices[i]);
+            btn[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JRadioButton jRadioButton = (JRadioButton)e.getSource();
+                    for(int i=0; i< btn.length; i++){
+                        if(btn[i].isSelected()){
+                            selection = i;
+                            System.out.println("selection is set" + i);
+                            break;
+                        }
+                    }
+                }
+            });
             buttonGroup.add(btn[i]);
             if(i==0) btn[i].setSelected(true);
             add(btn[i]);
@@ -47,15 +61,7 @@ public class InputHeader extends JPanel {
     }
 
     public int getSelectedAction(){
-        System.out.println("getSelectedAction is Active");
-        int result=0;
-        for (int i = 0; i < btn.length; i++) {
-            if(btn[i].isSelected()){
-                result = i;
-                break;
-            }
-        }
-        return result;
+        return selection;
     }
 
     public void setActionListener(ActionListener actionListener) {

@@ -2,6 +2,7 @@ package final_assignment.practice;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EntireScreen extends JFrame{
@@ -19,8 +20,7 @@ public class EntireScreen extends JFrame{
         setLayout(new BorderLayout());
         setSize(1000, 1000);
 
-        InputHeader inputHeader = new InputHeader(crudProgram);
-        inputHeader.setActionListener(handleActionListener());
+        inputHeader.setActionListener(new MyActionListener(this ));
         add(inputHeader, BorderLayout.NORTH);
 
         Body body = new Body(crudProgram);
@@ -29,8 +29,14 @@ public class EntireScreen extends JFrame{
         setVisible(true);
     }
 
-    public ActionListener handleActionListener() {
-        return e -> { // 람다식을 이용한 ActionListener 정의
+    class MyActionListener implements ActionListener{
+
+        private Component parent;
+        public MyActionListener(Component parent){
+            parent = parent;
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
             System.out.println("Action Occurred!");
             int action = inputHeader.getSelectedAction();
             String name = inputHeader.getName();
@@ -42,19 +48,19 @@ public class EntireScreen extends JFrame{
                 // List up logic
             } else if (action == 1) {
                 if (name.isEmpty() || age <= 0) {
-                    JOptionPane.showMessageDialog(this, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 crudProgram.create(name, age, ""); // 데이터 추가
             } else if (action == 2) {
                 if (name.isEmpty() || age <= 0) {
-                    JOptionPane.showMessageDialog(this, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 crudProgram.update(name, age); // 데이터 업데이트
             } else if (action == 3) {
                 if (name.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Please enter a name to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(parent, "Please enter a name to delete.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 crudProgram.delete(name); // 데이터 삭제
@@ -64,7 +70,7 @@ public class EntireScreen extends JFrame{
 
             body.updateList();
             inputHeader.clear();
-        };
+        }
     }
 }
 
