@@ -23,6 +23,7 @@ public class PersonManager implements CrudProgram{
         getAll();
     }
 
+    @Override
     public People getAll(){
         try{
             FileReader fileReader = new FileReader(filePath);
@@ -42,6 +43,7 @@ public class PersonManager implements CrudProgram{
         return people;
     }
 
+    @Override
     public People create(String name, int age, String profileImagePath){
         Person newPerson = new Person(name, age, profileImagePath);
         people.add(newPerson);
@@ -49,12 +51,14 @@ public class PersonManager implements CrudProgram{
         return people;
     }
 
+    @Override
     public People update(String name, int newAge){
         people.update(name, newAge);
         saveToFile();
         return people;
     }
 
+    @Override
     public People delete(String name) {
         people.delete(name);
         saveToFile();
@@ -74,6 +78,7 @@ public class PersonManager implements CrudProgram{
     }
 
     public static void main(String[] args) {
-         new EntireScreen(new PersonManager());
+        PersonManager personManager = new PersonManager();
+        new EntireScreen(personManager);
     }
 }

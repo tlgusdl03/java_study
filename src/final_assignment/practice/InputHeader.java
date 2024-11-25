@@ -2,8 +2,7 @@ package final_assignment.practice;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
 
 public class InputHeader extends JPanel {
     private String[] choices = {"1. List up", "2. Add", "3. Update", "4. Delete", "5. Exit"};
@@ -28,7 +27,9 @@ public class InputHeader extends JPanel {
             btn[i] = new JRadioButton(choices[i]);
             btn[i].setSize(100, 20);
             btn[i].setLocation(30 + 100 * i, 30);
+            btn[i].setActionCommand(choices[i]);
             buttonGroup.add(btn[i]);
+            if(i==0) btn[i].setSelected(true);
             add(btn[i]);
         }
 
@@ -40,34 +41,45 @@ public class InputHeader extends JPanel {
             add(jTextFields[i]);
         }
 
-        submitBtn.addMouseListener(new MyMouseListener());
         submitBtn.setSize(80, 20);
         submitBtn.setLocation(900, 30);
         add(submitBtn);
     }
 
-    class MyMouseListener extends MouseAdapter {
-        @Override
-        public void mousePressed(MouseEvent e) {
-            if (btn[0].isSelected()) {
-                crudProgram.getAll();
-                clear();
-            } else if (btn[1].isSelected()) {
-                crudProgram.create(jTextFields[0].getText(), Integer.parseInt(jTextFields[1].getText()), jTextFields[2].getText());
-                clear();
-            } else if (btn[2].isSelected()) {
-                crudProgram.update(jTextFields[0].getText(), Integer.parseInt(jTextFields[1].getText()));
-                clear();
-            } else if (btn[3].isSelected()) {
-                crudProgram.delete(jTextFields[0].getText());
-                clear();
-            } else if (btn[4].isSelected()) {
-                System.exit(0);
+    public int getSelectedAction(){
+        System.out.println("getSelectedAction is Active");
+        int result=0;
+        for (int i = 0; i < btn.length; i++) {
+            if(btn[i].isSelected()){
+                result = i;
+                break;
             }
+        }
+        return result;
+    }
+
+    public void setActionListener(ActionListener actionListener) {
+        submitBtn.addActionListener(actionListener);
+    }
+
+    public String getName(){
+        return jTextFields[0].getText();
+    }
+
+    public int getAge(){
+        String ageText = jTextFields[1].getText().trim();
+        if (ageText.isEmpty()) {
+            return 0;
+        }
+        try {
+            return Integer.parseInt(ageText);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid age input! Please enter a number.", "Error", JOptionPane.ERROR_MESSAGE);
+            return 0;
         }
     }
 
-    private void clear() {
+    public void clear() {
         jTextFields[0].setText("");
         jTextFields[1].setText("");
     }

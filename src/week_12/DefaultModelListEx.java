@@ -1,7 +1,5 @@
 package week_12;
 
-import week_4.Ex;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
