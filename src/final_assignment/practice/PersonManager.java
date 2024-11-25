@@ -20,7 +20,7 @@ public class PersonManager implements CrudProgram{
                 e.printStackTrace();
             }
         }
-        getAll();
+//        getAll();
     }
 
     @Override

@@ -4,7 +4,7 @@ public class Person {
     public String name;
     public int age;
     public String profileImagePath;
-//    private static String defaultPath = "src/final_assignment/practice/images/default_profile_image";
+
     Person(String name, int age, String profileImagePath){
         this.name = name;
         this.age = age;

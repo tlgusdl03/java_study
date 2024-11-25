@@ -3,6 +3,9 @@ package final_assignment.practice;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -26,8 +29,11 @@ public class Body extends JPanel {
         jScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         add(jScrollPane, BorderLayout.CENTER);
-
         updateList();
+    }
+
+    public void setMouseListener(MouseListener mouseListener){
+        myPanelJList.addMouseListener(mouseListener);
     }
 
     public void updateList() {
@@ -58,6 +64,8 @@ public class Body extends JPanel {
         private JLabel nameLabel = new JLabel();
         private JLabel ageLabel = new JLabel();
         private JLabel imageLabel = new JLabel();
+        private JButton updateBtn = new JButton("Update");
+        private JButton deleteBtn = new JButton("Delete");
 
         public MyPanelRenderer(){
             setLayout(new BorderLayout());
@@ -70,6 +78,8 @@ public class Body extends JPanel {
 
             add(imageLabel, BorderLayout.WEST);
             add(textPanel, BorderLayout.CENTER);
+
+
         }
         @Override
         public Component getListCellRendererComponent(JList<? extends MyPanel> list, MyPanel value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -104,3 +114,4 @@ public class Body extends JPanel {
         }
     }
 }
+
