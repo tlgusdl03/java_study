@@ -22,8 +22,6 @@ public class EntireScreen extends JFrame{
 
         inputHeader.setActionListener(new MyActionListener(this ));
         add(inputHeader, BorderLayout.NORTH);
-
-        Body body = new Body(crudProgram);
         add(body, BorderLayout.CENTER);
 
         setVisible(true);
@@ -47,24 +45,30 @@ public class EntireScreen extends JFrame{
             if (action == 0) {
                 // List up logic
             } else if (action == 1) {
-                if (name.isEmpty() || age <= 0) {
+                if (name.isEmpty()) {
                     JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                crudProgram.create(name, age, ""); // 데이터 추가
+                crudProgram.getSome(name); // 데이터 추가
             } else if (action == 2) {
                 if (name.isEmpty() || age <= 0) {
                     JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                crudProgram.update(name, age); // 데이터 업데이트
+                crudProgram.create(name, age, ""); // 데이터 추가
             } else if (action == 3) {
+                if (name.isEmpty() || age <= 0) {
+                    JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                crudProgram.update(name, age); // 데이터 업데이트
+            } else if (action == 4) {
                 if (name.isEmpty()) {
                     JOptionPane.showMessageDialog(parent, "Please enter a name to delete.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 crudProgram.delete(name); // 데이터 삭제
-            } else if (action == 4) {
+            } else if (action == 5) {
                 System.exit(0);
             }
 

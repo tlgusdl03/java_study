@@ -57,11 +57,31 @@ public class PersonManager implements CrudProgram{
         saveToFile();
         return people;
     }
-
     @Override
     public People delete(String name) {
         people.delete(name);
         saveToFile();
+        return people;
+    }
+    @Override
+    public People getSome(String name){
+        people.clear();
+        try{
+            FileReader fileReader = new FileReader(filePath);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
+            while((line = bufferedReader.readLine()) != null){
+                if(line.contains(name)){
+                    Person person = Person.fromString(line);
+                    people.add(person);
+                    System.out.println("name: " + person.name + ", age: " + person.age);
+                }
+            }
+            bufferedReader.close();
+            fileReader.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         return people;
     }
 

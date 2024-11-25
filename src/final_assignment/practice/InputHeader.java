@@ -6,14 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InputHeader extends JPanel {
-    private String[] choices = {"1. List up", "2. Add", "3. Update", "4. Delete", "5. Exit"};
-    private JRadioButton[] btn = new JRadioButton[5];
+    private String[] choices = {"1. List up", "2. find", "3. Add", "4. Update", "5. Delete", "6. Exit"};
+    private JRadioButton[] btn = new JRadioButton[6];
     private ButtonGroup buttonGroup = new ButtonGroup();
     private JTextField[] jTextFields = new JTextField[3];
     private JButton submitBtn = new JButton("Enter");
     private CrudProgram crudProgram;
-    private int selection=0;
-
     public InputHeader(CrudProgram crudProgram) {
         this.crudProgram = crudProgram;
 
@@ -25,23 +23,10 @@ public class InputHeader extends JPanel {
         jLabel.setLocation(130, 0);
         add(jLabel);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < choices.length; i++) {
             btn[i] = new JRadioButton(choices[i]);
-            btn[i].setSize(100, 20);
-            btn[i].setLocation(30 + 100 * i, 30);
-            btn[i].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JRadioButton jRadioButton = (JRadioButton)e.getSource();
-                    for(int i=0; i< btn.length; i++){
-                        if(btn[i].isSelected()){
-                            selection = i;
-                            System.out.println("selection is set" + i);
-                            break;
-                        }
-                    }
-                }
-            });
+            btn[i].setSize(80, 20);
+            btn[i].setLocation(30 + 80 * i, 30);
             buttonGroup.add(btn[i]);
             if(i==0) btn[i].setSelected(true);
             add(btn[i]);
@@ -61,7 +46,16 @@ public class InputHeader extends JPanel {
     }
 
     public int getSelectedAction(){
-        return selection;
+        int result = -1;
+
+        for(int i=0; i<btn.length; i++){
+            if(btn[i].isSelected()){
+                result = i;
+                break;
+            }
+        }
+
+        return result;
     }
 
     public void setActionListener(ActionListener actionListener) {
