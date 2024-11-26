@@ -97,15 +97,17 @@ public class EntireScreen extends JFrame{
                     options[0]
             );
             if(result == 0){
-                JOptionPane.showInputDialog(new UpdateDialog(myPanel.name));
+                UpdateDialog dialog = new UpdateDialog(myPanel.name);
+                dialog.setVisible(true);
             } else if (result == 1) {
                 crudProgram.delete(myPanel.name);
+                jList.repaint();
             }
         }
         class UpdateDialog extends JDialog{
             String name;
-            JTextField age = new JTextField(10);
-            JButton submitBtn = new JButton("Enter");
+            private JTextField age = new JTextField(10);
+            private JButton submitBtn = new JButton("Enter");
 
             public UpdateDialog(String name){
                 name = name;
