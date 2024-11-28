@@ -1,4 +1,6 @@
-package final_assignment.practice;
+package final_assignment.practice.gui;
+
+import final_assignment.practice.CrudProgram;
 
 import javax.swing.*;
 import java.awt.*;

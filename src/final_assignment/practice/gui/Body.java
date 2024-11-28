@@ -1,10 +1,11 @@
-package final_assignment.practice;
+package final_assignment.practice.gui;
+
+import final_assignment.practice.CrudProgram;
+import final_assignment.practice.user.Person;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.net.URL;

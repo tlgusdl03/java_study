@@ -1,5 +1,9 @@
 package final_assignment.practice;
 
+import final_assignment.practice.gui.EntireScreen;
+import final_assignment.practice.user.People;
+import final_assignment.practice.user.Person;
+
 import java.io.*;
 import java.util.ArrayList;
 public class PersonManager implements CrudProgram{

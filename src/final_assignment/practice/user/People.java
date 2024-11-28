@@ -1,4 +1,4 @@
-package final_assignment.practice;
+package final_assignment.practice.user;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class People {
     public void update(String name, int newAge) {
         for (int i = 0; i < people.size(); i++) {
             if (people.get(i).name.equals(name)) {
-                people.set(i, new Person(name, newAge, "test"));
+                people.set(i, new Person(name, newAge, ""));
                 break;
             }
         }

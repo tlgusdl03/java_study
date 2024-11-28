@@ -1,11 +1,11 @@
-package final_assignment.practice;
+package final_assignment.practice.user;
 
 public class Person {
     public String name;
     public int age;
     public String profileImagePath;
 
-    Person(String name, int age, String profileImagePath){
+    public Person(String name, int age, String profileImagePath){
         this.name = name;
         this.age = age;
         this.profileImagePath=profileImagePath;
