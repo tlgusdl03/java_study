@@ -104,7 +104,7 @@ public class EntireScreen extends JPanel{
                     options[0]
             );
             if(result == 0){
-                UpdateDialog dialog = new UpdateDialog(myPanel.name);
+                UpdateDialog dialog = new UpdateDialog(myPanel.name, body);
                 dialog.setVisible(true);
             } else if (result == 1) {
                 crudProgram.delete(myPanel.name);
@@ -116,7 +116,8 @@ public class EntireScreen extends JPanel{
             private JTextField age = new JTextField(10);
             private JButton submitBtn = new JButton("Enter");
 
-            public UpdateDialog(String name){
+            public UpdateDialog(String name, Body body){
+                setSize(new Dimension(300, 300));
                 name = name;
                 setLayout(new FlowLayout());
                 add(new JLabel("Input age"));
@@ -129,9 +130,11 @@ public class EntireScreen extends JPanel{
                         try{
                             int num = Integer.parseInt(age.getText());
                             crudProgram.update(finalName, num);
+                            body.updateList();
+
+                            dispose();
                         }catch (NumberFormatException exception){
                             JOptionPane.showMessageDialog(UpdateDialog.this, "Input Age only Numbers.", "Error", JOptionPane.ERROR_MESSAGE);
-                            return;
                         }
                     }
                 });

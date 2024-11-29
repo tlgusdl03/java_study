@@ -24,7 +24,6 @@ public class PersonManager implements CrudProgram{
                 e.printStackTrace();
             }
         }
-//        getAll();
     }
 
     @Override
@@ -102,10 +101,6 @@ public class PersonManager implements CrudProgram{
     }
 
     public static void main(String[] args) {
-//        PersonManager personManager = new PersonManager();
-//        new EntireScreen(personManager);
-//        AdminManager adminManager = new AdminManager();
-//        new AdminLoginScreen(adminManager);
         new Router();
     }
 }
