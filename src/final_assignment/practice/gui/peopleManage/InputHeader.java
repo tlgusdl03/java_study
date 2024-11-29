@@ -1,4 +1,4 @@
-package final_assignment.practice.gui;
+package final_assignment.practice.gui.peopleManage;
 
 import final_assignment.practice.CrudProgram;
 

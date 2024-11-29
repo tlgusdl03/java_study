@@ -1,8 +1,5 @@
 package final_assignment.practice;
 
-import final_assignment.practice.admin.AdminManager;
-import final_assignment.practice.gui.AdminLoginScreen;
-import final_assignment.practice.gui.EntireScreen;
 import final_assignment.practice.gui.Router;
 import final_assignment.practice.user.People;
 import final_assignment.practice.user.Person;

@@ -1,4 +1,4 @@
-package final_assignment.practice.gui;
+package final_assignment.practice.gui.peopleManage;
 
 import final_assignment.practice.CrudProgram;
 
@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class EntireScreen extends JFrame{
+public class EntireScreen extends JPanel{
     private String[] choices = {"1. List up", "2. Add", "3. Update", "4. Delete", "5. Exit"};
     private CrudProgram crudProgram;
     private Body body;
@@ -19,8 +19,6 @@ public class EntireScreen extends JFrame{
         this.body = new Body(crudProgram);
         this.inputHeader = new InputHeader(crudProgram);
 
-        setTitle("Person Manager Program");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setSize(1000, 1000);
 
@@ -33,7 +31,6 @@ public class EntireScreen extends JFrame{
     }
 
     class MyActionListener implements ActionListener{
-
         private Component parent;
         public MyActionListener(Component parent){
             parent = parent;

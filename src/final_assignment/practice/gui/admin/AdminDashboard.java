@@ -1,18 +1,16 @@
-package final_assignment.practice.gui;
+package final_assignment.practice.gui.admin;
 
 import final_assignment.practice.admin.AdminManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AdminDashboard extends JFrame {
+public class AdminDashboard extends JPanel {
     private AdminManager adminManager;
     public AdminDashboard(AdminManager adminManager) {
         this.adminManager = adminManager;
 
-        setTitle("Admin Dashboard");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JLabel welcomeLabel = new JLabel("Welcome, Admin!", SwingConstants.CENTER);
