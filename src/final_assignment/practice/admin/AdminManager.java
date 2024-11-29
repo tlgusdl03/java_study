@@ -46,6 +46,11 @@ public class AdminManager {
         saveAdmins();
     }
 
+    public void removeAdmin(String id){
+        adminMap.remove(id);
+        saveAdmins();
+    }
+
     public void saveAdmins() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(adminFilePath))) {
             for (Map.Entry<String, String> entry : adminMap.entrySet()) {
