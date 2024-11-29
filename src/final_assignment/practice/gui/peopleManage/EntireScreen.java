@@ -85,6 +85,14 @@ public class EntireScreen extends JPanel{
         public void mouseClicked(MouseEvent e) {
             JList<Body.MyPanel> jList = (JList<Body.MyPanel>) e.getSource();
             Body.MyPanel myPanel = jList.getSelectedValue();
+            int index = (int) jList.locationToIndex(e.getPoint());
+            System.out.println("Clicked at : " + e.getPoint() + "index is : " + index);
+
+            Rectangle cellBounds = jList.getCellBounds(index, index);
+            if (cellBounds == null || !cellBounds.contains(e.getPoint())) {
+                System.out.println("Clicked on empty background area");
+                return; // 빈 영역 클릭 시 종료
+            }
             int result = JOptionPane.showOptionDialog(
                     null,
                     "What would you like to do with this person",

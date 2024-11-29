@@ -22,6 +22,9 @@ public class Body extends JPanel {
         this.crudProgram = crudProgram;
 
         myPanelJList.setCellRenderer(new MyPanelRenderer());
+        myPanelJList.setFixedCellWidth(200);
+        myPanelJList.setFixedCellHeight(50);
+
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(900, 1000));
 
