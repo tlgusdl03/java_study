@@ -88,6 +88,14 @@ public class PersonManager implements CrudProgram{
         return people;
     }
 
+//    private void saveImage(String imagePath){
+//        String fileName = new String(imagePath.substring(,:));
+//        try{
+//            File file = new File(imagePath);
+//
+//        }
+//    }
+
     private void saveToFile() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath))) {
             ArrayList<Person> data = people.getPeople();

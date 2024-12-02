@@ -3,9 +3,12 @@ package final_assignment.practice.gui.peopleManage;
 import final_assignment.practice.CrudProgram;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class InputHeader extends JPanel {
     private String[] choices = {"1. List up", "2. find", "3. Add", "4. Update", "5. Delete", "6. Exit"};
@@ -39,6 +42,11 @@ public class InputHeader extends JPanel {
             jTextFields[i].setColumns(30);
             jTextFields[i].setSize(100, 20);
             jTextFields[i].setLocation(550 + 110 * i, 30);
+            if(i==2){
+                jTextFields[i].setEditable(false);
+                jTextFields[i].setText("Images Path...");
+                jTextFields[i].addMouseListener(new ProfileImageListener());
+            }
             add(jTextFields[i]);
         }
 
@@ -84,5 +92,28 @@ public class InputHeader extends JPanel {
     public void clear() {
         jTextFields[0].setText("");
         jTextFields[1].setText("");
+    }
+
+    class ProfileImageListener extends MouseAdapter {
+        private JFileChooser chooser;
+
+        public ProfileImageListener() {
+            chooser = new JFileChooser();
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
+            chooser.setFileFilter(filter);
+
+            int ret = chooser.showOpenDialog(null);
+            if (ret != JFileChooser.APPROVE_OPTION) {
+                JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다", "경고", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            String sourceFile = chooser.getSelectedFile().getPath();
+            jTextFields[2].setText(sourceFile);
+        }
     }
 }

@@ -42,6 +42,8 @@ public class Router extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setContentPane(adminDashboard);
+                revalidate();
+                repaint();
             }
         });
         JMenuItem jMenuItem2 = new JMenuItem("Page");
@@ -49,6 +51,8 @@ public class Router extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setContentPane(entireScreen);
+                revalidate();
+                repaint();
             }
         });
 
@@ -70,6 +74,8 @@ public class Router extends JFrame{
                 setVisible(true);
                 revalidate();
                 repaint();
+            }else{
+                JOptionPane.showMessageDialog(getParent(), "Wrong ID or Password", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
