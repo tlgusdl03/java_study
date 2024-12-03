@@ -3,38 +3,35 @@ package final_assignment.practice.gui.peopleManage;
 import final_assignment.practice.CrudProgram;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 
 public class EntireScreen extends JPanel{
-    private String[] choices = {"1. List up", "2. Add", "3. Update", "4. Delete", "5. Exit"};
     private CrudProgram crudProgram;
     private Body body;
     private InputHeader inputHeader;
     public EntireScreen(CrudProgram crudProgram){
+        init(crudProgram);
+    }
+
+    private void init(CrudProgram crudProgram){
         this.crudProgram = crudProgram;
         this.body = new Body(crudProgram);
         this.inputHeader = new InputHeader(crudProgram);
-
         setLayout(new BorderLayout());
         setSize(1000, 1000);
-
-        inputHeader.setActionListener(new MyActionListener(this ));
+        inputHeader.setActionListener(new ActionSelectionListener(this ));
         body.setMouseListener(new ListSelectionListener());
         add(inputHeader, BorderLayout.NORTH);
         add(body, BorderLayout.CENTER);
-
-        setVisible(true);
     }
 
-    class MyActionListener implements ActionListener{
+    class ActionSelectionListener implements ActionListener{
         private Component parent;
-        public MyActionListener(Component parent){
+        public ActionSelectionListener(Component parent){
             parent = parent;
         }
         @Override
@@ -43,6 +40,7 @@ public class EntireScreen extends JPanel{
             int action = inputHeader.getSelectedAction();
             String name = inputHeader.getName();
             int age = inputHeader.getAge();
+            String imagePath = inputHeader.getImagePath();
             System.out.println(action);
             System.out.println(name + age);
 
@@ -53,13 +51,13 @@ public class EntireScreen extends JPanel{
                     JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                crudProgram.getSome(name); // 데이터 추가
+                crudProgram.getSome(name); // 특정 데이터 검색
             } else if (action == 2) {
                 if (name.isEmpty() || age <= 0) {
                     JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                crudProgram.create(name, age, ""); // 데이터 추가
+                crudProgram.create(name, age, imagePath); // 데이터 추가
             } else if (action == 3) {
                 if (name.isEmpty() || age <= 0) {
                     JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);

@@ -89,9 +89,14 @@ public class InputHeader extends JPanel {
         }
     }
 
+    public String getImagePath(){
+        return jTextFields[2].getText();
+    }
+
     public void clear() {
         jTextFields[0].setText("");
         jTextFields[1].setText("");
+        jTextFields[2].setText("Images Path...");
     }
 
     class ProfileImageListener extends MouseAdapter {
