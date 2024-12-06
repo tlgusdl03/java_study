@@ -90,7 +90,12 @@ public class InputHeader extends JPanel {
     }
 
     public String getImagePath(){
-        return jTextFields[2].getText();
+        String imagePath = jTextFields[2].getText().trim();
+        if(imagePath.equals("Images Path...")){
+            imagePath = null;
+        }
+        System.out.println("Image Path: " + imagePath);
+        return imagePath;
     }
 
     public void clear() {

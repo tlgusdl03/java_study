@@ -1,9 +1,9 @@
 package final_assignment.practice.gui;
 
-import final_assignment.practice.PersonManager;
 import final_assignment.practice.admin.AdminManager;
 import final_assignment.practice.gui.admin.AdminDashboard;
 import final_assignment.practice.gui.peopleManage.EntireScreen;
+import final_assignment.practice.service.PersonManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 // 로그인 성공시 MainPage를 볼 수 있도록 함
 public class Router extends JFrame{
     private AdminManager adminManager = new AdminManager();
-    private PersonManager personManager = new PersonManager();
+    private PersonManager personManager = new PersonManager("src/final_assignment/practice/text.txt");
     private LoginPage loginPage = new LoginPage(adminManager);
     private EntireScreen entireScreen = new EntireScreen(personManager);
     private AdminDashboard adminDashboard = new AdminDashboard(adminManager);
@@ -22,16 +22,17 @@ public class Router extends JFrame{
     public Router(){
         init();
     }
-    void init(){
+    private void init(){
         setTitle("Main Application");
         setSize(800, 600);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMenu();
         loginPage.setModal(true);
         loginPage.setLoginButtonActionListener(new LoginBtnListener());
     }
 
-    void setMenu(){
+    private void setMenu(){
         JMenuBar jMenuBar = new JMenuBar();
 
         JMenu jMenu1 = new JMenu("Admin");

@@ -15,6 +15,7 @@ public class LoginPage extends JDialog {
         this.adminManager = adminManager;
 
         setSize(300, 150);
+        setLocationRelativeTo(null);
         setLayout(new FlowLayout());
 
         add(new JLabel("Admin ID:"));

@@ -1,6 +1,7 @@
 package final_assignment.practice.gui.peopleManage;
 
 import final_assignment.practice.CrudProgram;
+import final_assignment.practice.dto.Person;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,13 +52,13 @@ public class EntireScreen extends JPanel{
                     JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                crudProgram.getSome(name); // 특정 데이터 검색
+                crudProgram.findPeople(name); // 특정 데이터 검색
             } else if (action == 2) {
                 if (name.isEmpty() || age <= 0) {
                     JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                crudProgram.create(name, age, imagePath); // 데이터 추가
+                crudProgram.addPerson(name, age, imagePath); // 데이터 추가
             } else if (action == 3) {
                 if (name.isEmpty() || age <= 0) {
                     JOptionPane.showMessageDialog(parent, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -83,8 +84,8 @@ public class EntireScreen extends JPanel{
         Object[]options = {"Update", "Delete"};
         @Override
         public void mouseClicked(MouseEvent e) {
-            JList<Body.MyPanel> jList = (JList<Body.MyPanel>) e.getSource();
-            Body.MyPanel myPanel = jList.getSelectedValue();
+            JList<Person> jList = body.getMyPanelJList();
+            Person myPanel = jList.getSelectedValue();
             int index = (int) jList.locationToIndex(e.getPoint());
             System.out.println("Clicked at : " + e.getPoint() + "index is : " + index);
 
@@ -104,10 +105,10 @@ public class EntireScreen extends JPanel{
                     options[0]
             );
             if(result == 0){
-                UpdateDialog dialog = new UpdateDialog(myPanel.name, body);
+                UpdateDialog dialog = new UpdateDialog(myPanel.getName(), body);
                 dialog.setVisible(true);
             } else if (result == 1) {
-                crudProgram.delete(myPanel.name);
+                crudProgram.delete(myPanel.getName());
                 jList.repaint();
             }
         }
