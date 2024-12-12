@@ -1,4 +1,4 @@
-package predicated_final_assignment_prefare;
+package deprecated_final_assignment_project;
 
 public class main {
     public static void main(String[] args) {

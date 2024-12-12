@@ -1,4 +1,4 @@
-package predicated_final_assignment_prefare.model;
+package deprecated_final_assignment_project.model;
 
 import java.util.ArrayList;
 import java.util.List;

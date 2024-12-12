@@ -1,6 +1,6 @@
-package predicated_final_assignment_prefare.service;
+package deprecated_final_assignment_project.service;
 
-import predicated_final_assignment_prefare.model.Customer;
+import deprecated_final_assignment_project.model.Customer;
 
 import java.util.List;
 
