@@ -1,23 +1,23 @@
-package week_14;
+package final_assignment.chat_client;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
+import javax.swing.*;
 
-public class ChatServer extends JFrame implements ActionListener {
+public class ChatClient extends JFrame implements ActionListener{
+    private static final String SERVER_ADDRESS = "localhost";
+    private static final int SERVER_PORT = 9999;
+    private Socket socket = null;
     private BufferedReader in = null;
     private BufferedWriter out = null;
-    private ServerSocket listener = null;
-    private Socket socket = null;
-    private Receiver receiver;
-    private JTextField sender;
+    private Receiver receiver = null;
+    private JTextField sender = null;
 
-    public ChatServer(){
-        setTitle("서버 채팅 창");
+    public ChatClient(){
+        setTitle("클라이언트 채팅 창");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container c = getContentPane();
 
@@ -28,8 +28,8 @@ public class ChatServer extends JFrame implements ActionListener {
         sender = new JTextField();
         sender.addActionListener(this);
 
-        add(new JScrollPane(receiver), BorderLayout.CENTER);
-        add(sender, BorderLayout.SOUTH);
+        c.add(new JScrollPane(receiver), BorderLayout.CENTER);
+        c.add(sender, BorderLayout.SOUTH);
 
         setSize(400, 200);
         setVisible(true);
@@ -37,27 +37,22 @@ public class ChatServer extends JFrame implements ActionListener {
         try {
             setupConnection();
         } catch (IOException e) {
-            handleError(e.getMessage());
+            e.printStackTrace();
         }
 
         Thread th = new Thread(receiver);
         th.start();
     }
 
-    private void setupConnection() throws IOException {
-        listener = new ServerSocket(9999);
-        socket = listener.accept();
-        receiver.append("클라이언트로부터 연결 완료");
+    private void setupConnection() throws IOException{
+        socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
+
+        receiver.append("서버에 연결 완료");
         int pos = receiver.getText().length();
         receiver.setCaretPosition(pos);
 
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-    }
-
-    private static void handleError(String string) {
-        System.out.println(string);
-        System.exit(1);
     }
 
     private class Receiver extends JTextArea implements Runnable {
@@ -68,9 +63,9 @@ public class ChatServer extends JFrame implements ActionListener {
                 try {
                     msg = in.readLine();
                 } catch (IOException e) {
-                    handleError(e.getMessage());
+                    e.printStackTrace();
                 }
-                this.append("\n 클라이언트 : " + msg);
+                this.append("\n 서버 : " + msg);
                 int pos = this.getText().length();
                 this.setCaretPosition(pos);
             }
@@ -84,17 +79,17 @@ public class ChatServer extends JFrame implements ActionListener {
                 out.write(msg + "\n");
                 out.flush();
 
-                receiver.append("\n서버 : " + msg);
+                receiver.append("\n클라이언트 : " + msg);
                 int pos = receiver.getText().length();
                 receiver.setCaretPosition(pos);
                 sender.setText(null);
             } catch (IOException e1) {
-                handleError(e1.getMessage());
+                e1.printStackTrace();
             }
         }
     }
 
     public static void main(String[] args) {
-        new ChatServer();
+        new ChatClient();
     }
 }
